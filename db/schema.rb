@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_154750) do
+ActiveRecord::Schema.define(version: 2018_10_09_154750) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "option_types", force: :cascade do |t|
-    t.integer "product_id"
+    t.bigint "product_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 2018_10_02_154750) do
   end
 
   create_table "option_value_variants", force: :cascade do |t|
-    t.integer "option_value_id"
-    t.integer "variant_id"
+    t.bigint "option_value_id"
+    t.bigint "variant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["option_value_id"], name: "index_option_value_variants_on_option_value_id"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_154750) do
   end
 
   create_table "option_values", force: :cascade do |t|
-    t.integer "option_type_id"
+    t.bigint "option_type_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,6 +42,10 @@ ActiveRecord::Schema.define(version: 2018_10_02_154750) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.text "desc"
+    t.string "images"
+    t.string "price"
+    t.string "discounted_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,10 +55,15 @@ ActiveRecord::Schema.define(version: 2018_10_02_154750) do
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
     t.boolean "is_master"
-    t.integer "product_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_variants_on_product_id"
   end
 
+  add_foreign_key "option_types", "products"
+  add_foreign_key "option_value_variants", "option_values"
+  add_foreign_key "option_value_variants", "variants"
+  add_foreign_key "option_values", "option_types"
+  add_foreign_key "variants", "products"
 end
