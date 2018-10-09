@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Setup instuction
 
-Things you may want to cover:
 
-* Ruby version
+Clone the project, and go inside the dir.
+Bundle
+update database.yml file by your postgresql password
+rake db:create
+rake db:migrate
+rake db:seed
+rails s
 
-* System dependencies
 
-* Configuration
+# Three apis are below
 
-* Database creation
+GET =>  localhost:3000/api/products?search=samsung  #to search product by name
 
-* Database initialization
+GET =>   localhost:3000/api/products  #Fetch all products
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+GET => localhost:3000/api/products/3  #Fetch product varient by product ID
