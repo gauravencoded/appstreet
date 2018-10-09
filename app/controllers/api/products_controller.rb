@@ -1,10 +1,13 @@
 class Api::ProductsController < ApplicationController
 	def index
-		json_response(Product.all)
+	if params[:search].present?
+	json_response(Product.where("name ILIKE :name", name: "%"+params[:search]+"%"))
+	else
+	json_response(Product.all)
+	end
 	end
 
 	def show
-		# binding.pry
 		@variant = Variant.where(id: params[:id]).last
 		json_response(VariantSerializer.new(@variant))
 

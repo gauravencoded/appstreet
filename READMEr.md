@@ -26,3 +26,12 @@ storage = OptionValue.where(name: "1.5GB").last
 red = OptionValue.where(name: "Red").last
 chosen_option_value_ids = [storage.id, red.id]
 variant = Product.last.variants.joins(:option_values).where(option_values: { id: chosen_option_value_ids }).group(:id).having("count(variants.id) = ?", chosen_option_value_ids.count).first
+
+
+
+
+get localhost:3000/api/products?search=samsung
+
+localhost:3000/api/products
+
+localhost:3000/api/products/3
