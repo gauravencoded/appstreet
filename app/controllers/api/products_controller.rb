@@ -6,7 +6,7 @@ class Api::ProductsController < ApplicationController
 	def show
 		# binding.pry
 		@variant = Variant.where(id: params[:id]).last
-		# @variant.includes(:product)
-		json_response(@variant.product)
+		json_response(VariantSerializer.new(@variant))
+
 	end
 end
