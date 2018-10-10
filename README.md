@@ -18,4 +18,4 @@ GET =>  localhost:3000/api/products?search=samsung  #to search product by name
 
 GET =>   localhost:3000/api/products  #Fetch all products
 
-GET => localhost:3000/api/products/3  #Fetch product varient by product ID
+GET => localhost:3000/api/products/id  #Fetch product varient by product ID

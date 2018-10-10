@@ -1,4 +1,6 @@
 product = Product.create!(name: "Samsung Galaxy A8+", desc: "Resplendent in metal and glass, it’s thoughtfully designed", images: 'https://assignment-appstreet.herokuapp.com/sam_1.5gb_black_1.jpg', price: "30000", discounted_price: "27000")
+product = Product.create!(name: "Samsung Galaxy A8+", desc: "Resplendent in metal and glass, it’s thoughtfully designed", images: 'https://assignment-appstreet.herokuapp.com/sam_1.5gb_black_1.jpg', price: "30000", discounted_price: "27000")
+
 
 
 product.option_types.create!(name: "Storage").tap do |size|
